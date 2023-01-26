@@ -1,0 +1,13 @@
+{
+	"name": "AzureDatabricksFreeTier",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-4052026038755900.0.azuredatabricks.net",
+			"authentication": "MSI",
+			"workspaceResourceId": "/subscriptions/f4ccc37d-1601-4c1a-8441-eee88f3252aa/resourceGroups/AzureFreeTierRG/providers/Microsoft.Databricks/workspaces/ADBFreeTier",
+			"existingClusterId": "0126-082329-hrkxkz7k"
+		}
+	}
+}
