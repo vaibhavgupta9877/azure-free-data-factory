@@ -1,0 +1,12 @@
+{
+	"name": "CneosTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CneosSQLDatabaseFreeTier",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
