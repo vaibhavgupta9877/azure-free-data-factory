@@ -11,17 +11,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageFree'"
 		},
-		"AzureKeyVault_properties_typeProperties_baseUrl": {
+		"CneosSQLDatabaseFreeTier_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CneosSQLDatabaseFreeTier'"
+		},
+		"AzureDataLakeStorageFree_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://mykeyvaultfree.vault.azure.net/"
+			"defaultValue": "https://myazurefreetier.dfs.core.windows.net/"
 		},
 		"AzureDatabricksFreeTier_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0126-082329-hrkxkz7k"
 		},
-		"AzureDataLakeStorageFree_properties_typeProperties_url": {
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://myazurefreetier.dfs.core.windows.net/"
+			"defaultValue": "https://mykeyvaultfree.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -64,54 +68,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricksFreeTier')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricksFreeTier')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-4052026038755900.0.azuredatabricks.net",
-					"authentication": "MSI",
-					"workspaceResourceId": "/subscriptions/f4ccc37d-1601-4c1a-8441-eee88f3252aa/resourceGroups/AzureFreeTierRG/providers/Microsoft.Databricks/workspaces/ADBFreeTier",
-					"existingClusterId": "[parameters('AzureDatabricksFreeTier_properties_typeProperties_existingClusterId')]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageFree')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorageFree_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorageFree_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/CNEOS_Data_Processed')]",
@@ -191,6 +147,83 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorageFree')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CneosTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "CneosSQLDatabaseFreeTier",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/CneosSQLDatabaseFreeTier')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorageFree')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorageFree_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorageFree_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricksFreeTier')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-4052026038755900.0.azuredatabricks.net",
+					"authentication": "MSI",
+					"workspaceResourceId": "/subscriptions/f4ccc37d-1601-4c1a-8441-eee88f3252aa/resourceGroups/AzureFreeTierRG/providers/Microsoft.Databricks/workspaces/ADBFreeTier",
+					"existingClusterId": "[parameters('AzureDatabricksFreeTier_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CneosSQLDatabaseFreeTier')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('CneosSQLDatabaseFreeTier_connectionString')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

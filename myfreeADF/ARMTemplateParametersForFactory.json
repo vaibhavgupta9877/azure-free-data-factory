@@ -8,14 +8,17 @@
 		"AzureDataLakeStorageFree_accountKey": {
 			"value": ""
 		},
-		"AzureKeyVault_properties_typeProperties_baseUrl": {
-			"value": "https://mykeyvaultfree.vault.azure.net/"
+		"CneosSQLDatabaseFreeTier_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorageFree_properties_typeProperties_url": {
+			"value": "https://myazurefreetier.dfs.core.windows.net/"
 		},
 		"AzureDatabricksFreeTier_properties_typeProperties_existingClusterId": {
 			"value": "0126-082329-hrkxkz7k"
 		},
-		"AzureDataLakeStorageFree_properties_typeProperties_url": {
-			"value": "https://myazurefreetier.dfs.core.windows.net/"
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://mykeyvaultfree.vault.azure.net/"
 		}
 	}
 }

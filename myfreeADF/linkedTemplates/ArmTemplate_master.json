@@ -11,17 +11,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorageFree'"
 		},
-		"AzureKeyVault_properties_typeProperties_baseUrl": {
+		"CneosSQLDatabaseFreeTier_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'CneosSQLDatabaseFreeTier'"
+		},
+		"AzureDataLakeStorageFree_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://mykeyvaultfree.vault.azure.net/"
+			"defaultValue": "https://myazurefreetier.dfs.core.windows.net/"
 		},
 		"AzureDatabricksFreeTier_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0126-082329-hrkxkz7k"
 		},
-		"AzureDataLakeStorageFree_properties_typeProperties_url": {
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://myazurefreetier.dfs.core.windows.net/"
+			"defaultValue": "https://mykeyvaultfree.vault.azure.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -53,14 +57,17 @@
 					"AzureDataLakeStorageFree_accountKey": {
 						"value": "[parameters('AzureDataLakeStorageFree_accountKey')]"
 					},
-					"AzureKeyVault_properties_typeProperties_baseUrl": {
-						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+					"CneosSQLDatabaseFreeTier_connectionString": {
+						"value": "[parameters('CneosSQLDatabaseFreeTier_connectionString')]"
 					},
 					"AzureDataLakeStorageFree_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorageFree_properties_typeProperties_url')]"
 					},
 					"AzureDatabricksFreeTier_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricksFreeTier_properties_typeProperties_existingClusterId')]"
+					},
+					"AzureKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},
